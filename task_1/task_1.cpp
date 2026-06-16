@@ -15,9 +15,11 @@ int main() {
     }
 
     std::vector<std::vector<int>> dp(h);
+    std::vector<std::vector<int>> choice(h);
 
     for (int i = 0; i < h; ++i) {
         dp[i].resize(i + 1);
+        choice[i].resize(i + 1);
     }
 
     // Последний уровень
@@ -35,9 +37,11 @@ int main() {
 
             if (left <= right) {
                 dp[i][j] = arr[i][j] + left;
+                choice[i][j] = 0;
 
             } else {
                 dp[i][j] = arr[i][j] + right;
+                choice[i][j] = 1;
             }
         }
     }
@@ -45,6 +49,28 @@ int main() {
     // Сумма
     int min_sum = dp[0][0];
     std::cout << min_sum << std::endl;
+
+    // Путь
+    std::vector<int> path;
+    int i = 0, j = 0;
+    while (i < h) {
+        path.push_back(arr[i][j]);
+        if (i == h - 1) {
+            break;
+        }
+        if (choice[i][j] == 0) {
+            ++i;
+        } else {
+            ++i;
+            ++j;
+        }
+    }
+
+    for (size_t k = 0; k < path.size(); ++k) {
+        if (k) std::cout << ' ';
+        std::cout << path[k];
+    }
+    std::cout << std::endl;
 
     return 0;
 }
