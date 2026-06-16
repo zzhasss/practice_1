@@ -1,48 +1,50 @@
 #include <iostream>
 #include <vector>
-
-const int INF = 10000000;
+#include <algorithm>
 
 int main() {
-    int h = 0;
+    int h;
     std::cin >> h;
-    int n = h *(h + 1) / 2;
 
-    int* arr = new int[n]; 
-    for (int i = 0; i < n; i++) {
-        std::cin >> arr[i];
+    std::vector<std::vector<int>> arr(h);
+    for (int i = 0; i < h; ++i) {
+        arr[i].resize(i + 1);
+        for (int j = 0; j <= i; ++j) {
+            std::cin >> arr[i][j];
+        }
     }
 
-    int count = 0;
-    int i = 0;
+    std::vector<std::vector<int>> dp(h);
 
+    for (int i = 0; i < h; ++i) {
+        dp[i].resize(i + 1);
+    }
 
-    std::vector<int> result_arr;
-    int result = 0;
+    // Последний уровень
+    for (int j = 0; j < h; ++j) {
+        dp[h - 1][j] = arr[h - 1][j];
+    }
 
-    while (i < n) {
+    // Заполнение снизу вверх
+    for (int i = h - 2; i >= 0; --i) {
 
-        int min_n = INF;
-        count++;
+        for (int j = 0; j <= i; ++j) {
 
-        for(int j = 0; j < count; j++) {
+            int left = dp[i + 1][j];
+            int right = dp[i + 1][j + 1];
 
-            if (min_n > arr[i]) {
-                min_n = arr[i];
-            }
+            if (left <= right) {
+                dp[i][j] = arr[i][j] + left;
 
-            i++;
-
-            if (j + 1 == count) {
-                result += min_n;
-                result_arr.push_back(min_n);
+            } else {
+                dp[i][j] = arr[i][j] + right;
             }
         }
     }
 
-    std::cout << result;
-    for (int i = 0; i < result_arr.size(); i++) {
-        std::cout << result_arr[i];
-    }
+    // Сумма
+    int min_sum = dp[0][0];
+    std::cout << min_sum << std::endl;
+
     return 0;
 }
