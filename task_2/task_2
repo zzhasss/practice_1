@@ -32,7 +32,7 @@ int main() {
     int components = 0;
 
     for (int v = 1; v <= N; v++) {
-        if (!used[v] && !g[v].empty()) {
+        if (!used[v]) {
             dfs(v);
             components++;
         }
