@@ -1,38 +1,38 @@
 #include <iostream>
 #include <vector>
 
+class T {
+private:
+    std::vector<long long> bit;
+    int n;
 
-int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
+public:
+    T(int n) : n(n) {
+        bit.assign(n + 1, 0);
+    }
 
-    int n, k;
-    std::cin >> n >> k;
-
-    std::vector<long long> snow(n + 1, 0);
-
-    for (int q = 0; q < k; q++) {
-        int type;
-        std::cin >> type;
-
-        if (type == 1) {
-            int i;
-            long long x;
-            std::cin >> i >> x;
-
-            snow[i] += x;
-        } else {
-            int l, r;
-            std::cin >> l >> r;
-
-            long long sum = 0;
-            for (int i = l; i <= r; i++) {
-                sum += snow[i];
-            }
-
-            std::cout << sum << '\n';
+    // Добавить значение
+    void Add(int idx, long long val) {
+        while (idx <= n) {
+            bit[idx] += val;
+            idx += idx & -idx;
         }
     }
 
-    return 0;
-}
+    // Префиксная ссумма
+    long long Sum(int idx) {
+        long long res = 0;
+
+        while (idx > 0) {
+            res += bit[idx];
+            idx -= idx & -idx;
+        }
+
+        return res;
+    }
+
+    //Сумма на диапазоне 
+    long long RangeSum(int l, int r) {
+        return Sum(r) - Sum(l);
+    }
+};
