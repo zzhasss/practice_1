@@ -19,7 +19,7 @@ public:
         }
     }
 
-    // Префиксная ссумма
+    // Префиксная сумма
     long long Sum(int idx) {
         long long res = 0;
 
@@ -31,8 +31,36 @@ public:
         return res;
     }
 
-    //Сумма на диапазоне 
+    // Сумма на диапазоне 
     long long RangeSum(int l, int r) {
-        return Sum(r) - Sum(l);
+        return Sum(r) - Sum(l - 1);
     }
 };
+
+int main() {
+    int n, k;
+    std::cin >> n >> k;
+
+    T tree(n);
+
+    for (int q = 0; q < k; q++) {
+        int type;
+        std::cin >> type;
+
+        if (type == 1) {
+            int i;
+            long long x;
+            std::cin >> i >> x;
+
+            tree.Add(i, x);
+
+        } else {
+            int l, r;
+            std::cin >> l >> r;
+
+            std::cout << tree.RangeSum(l, r) << '\n';
+        }
+    }
+
+    return 0;
+}
