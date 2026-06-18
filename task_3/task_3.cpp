@@ -20,7 +20,7 @@ int main() {
             long long x;
             std::cin >> i >> x;
 
-            snow[i] = x;
+            snow[i] += x;
         } else {
             int l, r;
             std::cin >> l >> r;
