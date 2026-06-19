@@ -22,12 +22,12 @@ int main() {
     std::string result(n, ' ');
     std::vector<bool> used(n, false);
 
-    for (int i = 0; i < n; i++) {
-        if (used[i])
+    for (int start = 0; start < n; start++) {
+        if (used[start])
             continue;
 
         std::vector<int> cycle;
-        int v = i;
+        int v = start;
 
         while (!used[v]) {
             used[v] = true;
