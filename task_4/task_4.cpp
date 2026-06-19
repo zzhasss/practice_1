@@ -11,18 +11,29 @@ int main() {
     std::vector<int> p(n);
     for (int i = 0; i < n; i++) {
         std::cin >> p[i];
+        p[i]--;
     }
 
     std::string s;
     std::cin >> s;
 
-    std::string result(n, ' ');
+    std::vector<int> rev(n);
 
     for (int i = 0; i < n; i++) {
-        result[p[i] - 1] = s[i];
+        rev[p[i]] = i;
     }
 
-    std::cout << result << std::endl;
+    while (k--) {
+        std::string temp(n, ' ');
+
+        for (int i = 0; i < n; i++) {
+            temp[i] = s[rev[i]];
+        }
+
+        s = temp;
+    }
+
+    std::cout << s << std::endl;
 
     return 0;
 }
