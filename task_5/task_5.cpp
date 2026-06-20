@@ -6,35 +6,37 @@ int main()
     int h, w;
     std::cin >> h >> w;
 
-    std::vector<std::vector<int>> a(h, std::vector<int>(w));
-
-    int r1 = -1;
-    int c1 = -1;
-    int r2 = -1;
-    int c2 = -1;
+    int minRow = h;
+    int minCol = w;
+    int maxRow = 0;
+    int maxCol = 0;
 
     for (int i = 0; i < h; i++)
     {
         for (int j = 0; j < w; j++)
         {
-            std::cin >> a[i][j];
+            int x;
+            std::cin >> x;
 
-            if (a[i][j] == 1)
+            if (x == 1)
             {
-                if (r1 == -1)
-                {
-                    r1 = i;
-                    c1 = j;
-                }
+                if (i < minRow)
+                    minRow = i;
 
-                r2 = i;
-                c2 = j;
+                if (j < minCol)
+                    minCol = j;
+
+                if (i > maxRow)
+                    maxRow = i;
+
+                if (j > maxCol)
+                    maxCol = j;
             }
         }
     }
 
-    std::cout << r1 << " " << c1 << " "
-              << r2 << " " << c2;
+    std::cout << minRow << " " << minCol << " "
+              << maxRow << " " << maxCol;
 
     return 0;
 }
