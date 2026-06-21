@@ -8,12 +8,12 @@ int main() {
         long long a, b, x, y;
         std::cin >> a >> b >> x >> y;
 
-        long long ans = std::min(a + b, x + y);
+        long long used = std::min(a, y);
 
-        if (b > x)
-            ans -= std::min(y, b - x);
+        long long result = used;
+        result += std::min(x, b);
 
-        std::cout << ans << " ";
+        std::cout << result << " ";
     }
 
     return 0;
