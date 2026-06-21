@@ -9,9 +9,10 @@ int main() {
         std::cin >> a >> b >> x >> y;
 
         long long used = std::min(a, y);
+        a -= used;
 
         long long result = used;
-        result += std::min(x, b);
+        result += std::min(x, a + b);
 
         std::cout << result << " ";
     }
