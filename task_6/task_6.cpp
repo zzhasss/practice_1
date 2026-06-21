@@ -8,7 +8,12 @@ int main() {
         long long a, b, x, y;
         std::cin >> a >> b >> x >> y;
 
-        std::cout << std::min(a + b, x + y) << " ";
+        long long ans = std::min(a + b, x + y);
+
+        if (b > x)
+            ans -= std::min(y, b - x);
+
+        std::cout << ans << " ";
     }
 
     return 0;
