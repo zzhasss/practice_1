@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "author": "Крылатый Звучатель",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -80, "left": -20, "attrs": {} },
+    { "type": "wokwi-led", "id": "redLed", "top": -10, "left": 350, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "greenLed",
+      "top": 50,
+      "left": 350,
+      "attrs": { "color": "green" }
+    },
+    { "type": "wokwi-resistor", "id": "r1", "top": 86, "left": 300, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 26, "left": 300, "attrs": { "value": "220" } },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": 170, "left": 250, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 260,
+      "left": 250,
+      "attrs": { "value": "10000" }
+    }
+  ],
+  "connections": [
+    [ "uno:8", "redLed:A", "green", [ "v-15.4", "h231", "v118.4" ] ],
+    [ "redLed:C", "r2:1", "green", [] ],
+    [ "r2:2", "uno:GND.1", "black", [ "v-137.25", "h-263.3" ] ],
+    [ "uno:9", "greenLed:A", "green", [ "v-25", "h260.2", "v188" ] ],
+    [ "greenLed:C", "r1:1", "green", [] ],
+    [ "r1:2", "uno:GND.2", "black", [ "v33.15", "h-209.3" ] ],
+    [ "uno:5V", "r3:1", "red", [ "v32.5", "h110" ] ],
+    [ "r3:2", "uno:A0", "blue", [ "v41.55", "h-120.8" ] ],
+    [ "uno:A0", "ldr1:AO", "blue", [ "h-15.2", "v128.5", "h249.2" ] ],
+    [ "ldr1:GND", "uno:GND.3", "black", [ "v130.4", "h-263" ] ],
+    [ "ldr1:VCC", "uno:5V", "red", [ "v-22.8", "h-287.6", "v-51.7" ] ]
+  ],
+  "dependencies": {}
+}
