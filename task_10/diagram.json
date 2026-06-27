@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "author": "Крылатый Звучатель",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0.6, "left": -0.6, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo1", "top": 218.8, "left": 345.6, "attrs": {} }
+  ],
+  "connections": [
+    [ "uno:9", "servo1:PWM", "green", [ "v-48", "h-201.4", "v326.2" ] ],
+    [ "uno:5V", "servo1:V+", "red", [ "v0" ] ],
+    [ "uno:GND", "servo1:GND", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
